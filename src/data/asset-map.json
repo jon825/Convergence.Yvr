@@ -1,0 +1,110 @@
+[
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0549.JPG",
+    "size": [
+      2549,
+      3735
+    ],
+    "asset": "food-and-drink",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0575.JPG",
+    "size": [
+      2656,
+      3984
+    ],
+    "asset": "pasta-at-the-table",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0436.JPG",
+    "size": [
+      2656,
+      3984
+    ],
+    "asset": "citrus-pairing",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos22.zip",
+    "original": "110-_DSC8520.jpg",
+    "size": [
+      3265,
+      4898
+    ],
+    "asset": "team-at-an-event",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0562.JPG",
+    "size": [
+      2656,
+      3984
+    ],
+    "asset": "plated-salad",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0587.JPG",
+    "size": [
+      2507,
+      3761
+    ],
+    "asset": "dark-garnished-drink",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "279-_DSC8758.jpg",
+    "size": [
+      3265,
+      4898
+    ],
+    "asset": "pouring-a-pairing",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencelogos.zip",
+    "original": "Covergence_Transparent 1.png",
+    "asset": "convergence-logo.png"
+  },
+  {
+    "archive": "convergencelogos.zip",
+    "original": "Covergence_Transparent 2.png",
+    "asset": "convergence-mark.png"
+  }
+]

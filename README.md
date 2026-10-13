@@ -21,16 +21,16 @@ npm run preview
 ## Structure
 
 - `src/App.jsx`: page sections and brand storytelling
-- `src/components/`: navigation and explicit photography placeholders
+- `src/components/`: navigation and responsive photography
 - `src/data/content.js`: process, navigation, and contact details
 - `src/styles/site.css`: palette, typography, responsive layouts and reduced motion
 
 ## Before deployment
 
-- Supply the original logo and photography. Current wordmark, favicon and abstract image placeholders are provisional design elements, not authentic brand assets or event photos.
-- Replace MediaPlaceholder instances with optimized authentic images, meaningful alt text, explicit dimensions, and lazy loading below the hero.
+- Original supplied logos and selected photography are now included. `src/data/asset-map.json` records their source archives and filenames. Photos use 480, 960 and 1440px WebP variants; originals remain in the supplied archives.
+- Menu graphics are deliberately excluded to avoid publishing older offerings.
 - Confirm convergence.yvr@gmail.com and @convergence.yvr against the original branding. Links use the details supplied in the brief.
 - Add the confirmed production URL and social preview image to Open Graph metadata. Confirm the service area before including location claims.
-- Visually review 375, 768, 1024 and 1440px layouts and test keyboard navigation in a browser before publishing. Browser validation was blocked in the initial cloud build by a missing Chromium executable and forbidden browser-download domain.
+- Browser checks passed at 375, 768, 1024 and 1440px: images loaded, no horizontal overflow, mobile navigation closes on selection and Escape. Desktop and mobile screenshots were visually reviewed.
 
 No backend, booking system, fixed pricing or current menu is included.
