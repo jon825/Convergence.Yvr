@@ -106,5 +106,89 @@
     "archive": "convergencelogos.zip",
     "original": "Covergence_Transparent 2.png",
     "asset": "convergence-mark.png"
+  },
+  {
+    "archive": "convergencephotosafewmore.zip",
+    "original": "motion_photo_3896679366962705326.jpg",
+    "size": [
+      3840,
+      5120
+    ],
+    "asset": "mint-drinks-in-preparation",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotosafewmore.zip",
+    "original": "IMG-20251001-WA0036.jpg",
+    "size": [
+      3024,
+      4032
+    ],
+    "asset": "plates-ready-for-service",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotosafewmore.zip",
+    "original": "IMG-20251001-WA0033.jpg",
+    "size": [
+      3840,
+      5120
+    ],
+    "asset": "plated-courses",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0510.JPG",
+    "size": [
+      2656,
+      3984
+    ],
+    "asset": "filled-pasta",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "IMG_0543.JPG",
+    "size": [
+      2656,
+      3984
+    ],
+    "asset": "plated-textures",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
+  },
+  {
+    "archive": "convergencephotos12.zip",
+    "original": "PXL_20240525_024259782~2.jpg",
+    "size": [
+      2866,
+      3818
+    ],
+    "asset": "small-bites",
+    "widths": [
+      480,
+      960,
+      1440
+    ]
   }
 ]

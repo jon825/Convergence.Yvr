@@ -34,3 +34,7 @@ npm run preview
 - Browser checks passed at 375, 768, 1024 and 1440px: images loaded, no horizontal overflow, mobile navigation closes on selection and Escape. Desktop and mobile screenshots were visually reviewed.
 
 No backend, booking system, fixed pricing or current menu is included.
+
+## Gallery
+
+Nine distinct photos scroll slowly back and forth without cloned slides. Hover or keyboard focus pauses movement; manual controls and touch pause it until Play is selected. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and pairing sections.
