@@ -46,3 +46,5 @@
 .gallery-photo{cursor:grab;user-select:none}
 .gallery-photo img{-webkit-user-drag:none;user-select:none}
 .gallery-rail.is-dragging,.gallery-rail.is-dragging .gallery-photo{cursor:grabbing}
+
+@media(max-width:800px){.menu-toggle{width:48px;height:48px;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}.menu-toggle:hover{color:var(--sage);border-color:var(--sage)}}
