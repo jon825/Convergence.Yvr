@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { galleryPhotos } from '../data/gallery';
 
 export default function Gallery() {
@@ -12,7 +12,15 @@ export default function Gallery() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(null);
-  const direction = useRef(1);
+  const [offset, setOffset] = useState(0);
+  const pendingScroll = useRef(null);
+  // Rotate existing photos after a full card leaves the viewport. No duplicate slides.
+  useLayoutEffect(() => {
+    if (pendingScroll.current !== null) {
+      rail.current.scrollLeft = pendingScroll.current;
+      pendingScroll.current = null;
+    }
+  }, [offset]);
 
   useEffect(() => {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -34,11 +42,17 @@ export default function Gallery() {
       if (last !== undefined && !document.hidden) {
         const max = node.scrollWidth - node.clientWidth;
         if (max > 0) {
-          const next = position + direction.current * Math.min(now - last, 50) * 0.025;
-          position = Math.max(0, Math.min(max, next));
+          position += Math.min(now - last, 50) * 0.025;
+          const first = node.firstElementChild;
+          const second = first?.nextElementSibling;
+          const step = second ? second.offsetLeft - first.offsetLeft : 0;
+          if (step > 0 && position >= step) {
+            const count = Math.min(Math.floor(position / step), galleryPhotos.length - 1);
+            pendingScroll.current = position - count * step;
+            setOffset(current => (current + count) % galleryPhotos.length);
+            return;
+          }
           node.scrollLeft = position;
-          if (next >= max) direction.current = -1;
-          if (next <= 0) direction.current = 1;
         }
       }
       last = now;
@@ -46,7 +60,7 @@ export default function Gallery() {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [dragging, hovered, focused, reducedMotion, visible, selected]);
+  }, [dragging, hovered, focused, reducedMotion, visible, selected, offset]);
 
   useEffect(() => {
     if (selected !== null && !dialog.current.open) dialog.current.showModal();
@@ -98,10 +112,12 @@ export default function Gallery() {
         }
       }}
       onKeyDown={event => { if (event.target === event.currentTarget && ['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); } }}>
-      {galleryPhotos.map((photo, index) => <button className="gallery-photo" type="button" key={photo.image} onClick={() => setSelected(index)} aria-label={`Enlarge photo ${index + 1}: ${photo.alt}`} aria-haspopup="dialog">
+      {galleryPhotos.map((_, slot) => {
+        const index = (slot + offset) % galleryPhotos.length;
+        const photo = galleryPhotos[index];
+        return <button className="gallery-photo" type="button" key={photo.image} onClick={() => setSelected(index)} aria-label={`Enlarge photo ${index + 1}: ${photo.alt}`} aria-haspopup="dialog">
         <img draggable="false" src={`/images/${photo.image}-480.webp`} srcSet={`/images/${photo.image}-480.webp 480w, /images/${photo.image}-960.webp 960w`} sizes="(max-width: 600px) 78vw, 360px" width="480" height="720" alt={photo.alt} loading="lazy" decoding="async"/>
-        <span className="gallery-photo-label" aria-hidden="true">{String(index + 1).padStart(2, '0')} <span>View photograph +</span></span>
-      </button>)}
+      </button>; })}
     </div>
     <dialog ref={dialog} className="gallery-dialog" aria-labelledby="photo-title" aria-describedby="photo-caption"
       onCancel={() => setSelected(null)} onClose={() => setSelected(null)}
