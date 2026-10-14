@@ -98,7 +98,25 @@ export default function Gallery() {
         }
         if (gesture.moved) {
           event.preventDefault();
-          rail.current.scrollLeft = gesture.scroll - distance;
+          const node = rail.current;
+          const first = node.firstElementChild;
+          const second = first?.nextElementSibling;
+          const step = second ? second.offsetLeft - first.offsetLeft : 0;
+          let position = gesture.scroll - distance;
+          if (step > 0) {
+            const count = Math.floor(position / step);
+            if (count !== 0) {
+              position -= count * step;
+              // Keep the original pointer anchor aligned with the reordered strip.
+              gesture.scroll -= count * step;
+              if (count % galleryPhotos.length !== 0) {
+                pendingScroll.current = position;
+                setOffset(current => ((current + count) % galleryPhotos.length + galleryPhotos.length) % galleryPhotos.length);
+                return;
+              }
+            }
+          }
+          node.scrollLeft = position;
         }
       }}
       onPointerUp={() => { drag.current = null; setDragging(false); }}
