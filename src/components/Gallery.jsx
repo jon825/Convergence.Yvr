@@ -4,7 +4,9 @@ import { galleryPhotos } from '../data/gallery';
 export default function Gallery() {
   const rail = useRef(null);
   const dialog = useRef(null);
-  const [paused, setPaused] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef(null);
+  const suppressClick = useRef(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -23,7 +25,7 @@ export default function Gallery() {
   }, []);
 
   useEffect(() => {
-    if (paused || hovered || focused || reducedMotion || !visible || selected !== null) return;
+    if (dragging || hovered || focused || reducedMotion || !visible || selected !== null) return;
     let frame;
     let last;
     let position = rail.current.scrollLeft;
@@ -44,7 +46,7 @@ export default function Gallery() {
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [paused, hovered, focused, reducedMotion, visible, selected]);
+  }, [dragging, hovered, focused, reducedMotion, visible, selected]);
 
   useEffect(() => {
     if (selected !== null && !dialog.current.open) dialog.current.showModal();
@@ -56,28 +58,48 @@ export default function Gallery() {
   }, [selected]);
 
   const move = amount => {
-    setPaused(true);
     rail.current.scrollBy({ left: amount * rail.current.clientWidth * 0.75, behavior: reducedMotion ? 'instant' : 'smooth' });
   };
   const showAdjacent = amount => setSelected(current => (current + amount + galleryPhotos.length) % galleryPhotos.length);
   const active = selected === null ? null : galleryPhotos[selected];
 
   return <>
-    <div className="gallery-controls">
-      <p id="gallery-help">Scroll to explore. Select a photograph for a closer look.</p>
-      <div className="gallery-buttons">
-        {!reducedMotion && <button type="button" onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? 'Play gallery' : 'Pause gallery'}</button>}
-        <button type="button" onClick={() => move(-1)} aria-label="Scroll gallery left">←</button>
-        <button type="button" onClick={() => move(1)} aria-label="Scroll gallery right">→</button>
-      </div>
-    </div>
-    <div ref={rail} className="gallery-rail" role="region" aria-label="Selected creations" aria-describedby="gallery-help" tabIndex="0"
+    <div ref={rail} className={`gallery-rail${dragging ? ' is-dragging' : ''}`} role="region" aria-label="Selected creations" tabIndex="0"
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       onFocusCapture={() => setFocused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}
-      onTouchStart={() => setPaused(true)} onWheel={() => setPaused(true)}
+      onPointerDown={event => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        suppressClick.current = false;
+        drag.current = { id: event.pointerId, x: event.clientX, scroll: rail.current.scrollLeft, moved: false };
+      }}
+      onPointerMove={event => {
+        const gesture = drag.current;
+        if (!gesture || gesture.id !== event.pointerId) return;
+        const distance = event.clientX - gesture.x;
+        if (!gesture.moved && Math.abs(distance) > 6) {
+          gesture.moved = true;
+          suppressClick.current = true;
+          setDragging(true);
+          rail.current.setPointerCapture(event.pointerId);
+        }
+        if (gesture.moved) {
+          event.preventDefault();
+          rail.current.scrollLeft = gesture.scroll - distance;
+        }
+      }}
+      onPointerUp={() => { drag.current = null; setDragging(false); }}
+      onPointerCancel={() => { drag.current = null; setDragging(false); suppressClick.current = false; }}
+      onLostPointerCapture={() => { drag.current = null; setDragging(false); }}
+      onClickCapture={event => {
+        if (suppressClick.current && event.detail > 0) {
+          event.preventDefault();
+          event.stopPropagation();
+          suppressClick.current = false;
+        }
+      }}
       onKeyDown={event => { if (event.target === event.currentTarget && ['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); } }}>
       {galleryPhotos.map((photo, index) => <button className="gallery-photo" type="button" key={photo.image} onClick={() => setSelected(index)} aria-label={`Enlarge photo ${index + 1}: ${photo.alt}`} aria-haspopup="dialog">
-        <img src={`/images/${photo.image}-480.webp`} srcSet={`/images/${photo.image}-480.webp 480w, /images/${photo.image}-960.webp 960w`} sizes="(max-width: 600px) 78vw, 360px" width="480" height="720" alt={photo.alt} loading="lazy" decoding="async"/>
+        <img draggable="false" src={`/images/${photo.image}-480.webp`} srcSet={`/images/${photo.image}-480.webp 480w, /images/${photo.image}-960.webp 960w`} sizes="(max-width: 600px) 78vw, 360px" width="480" height="720" alt={photo.alt} loading="lazy" decoding="async"/>
         <span className="gallery-photo-label" aria-hidden="true">{String(index + 1).padStart(2, '0')} <span>View photograph +</span></span>
       </button>)}
     </div>

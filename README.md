@@ -37,4 +37,4 @@ No backend, booking system, fixed pricing or current menu is included.
 
 ## Gallery
 
-Nine distinct photos scroll slowly back and forth without cloned slides. Hover or keyboard focus pauses movement; manual controls and touch pause it until Play is selected. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and pairing sections.
+Nine distinct photos scroll slowly back and forth without cloned slides. Hover or keyboard focus pauses movement; click-and-drag moves the strip without opening a photo. The scrollbar and gallery controls are hidden. Touch uses native swiping. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and pairing sections.

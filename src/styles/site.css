@@ -39,3 +39,10 @@
 .lightbox-footer p{text-align:center;font-size:12px;line-height:1.5;margin:0}
 .lightbox-footer p span{display:block;color:var(--sage);font-size:10px;margin-top:5px}
 @media(max-width:600px){.gallery-controls{align-items:flex-start;flex-direction:column}.gallery-photo{flex-basis:78vw}.gallery-photo img{height:390px}.gallery-rail{gap:16px}.lightbox-content{padding:14px}.lightbox-footer{flex-wrap:wrap;gap:10px}.lightbox-footer p{order:-1;width:100%}.lightbox-toolbar h3{font-size:20px}}
+
+/* Keep horizontal scrolling available without visible scrollbar chrome. */
+.gallery-rail{scrollbar-width:none;-ms-overflow-style:none;padding-bottom:8px;cursor:grab}
+.gallery-rail::-webkit-scrollbar{display:none}
+.gallery-photo{cursor:grab;user-select:none}
+.gallery-photo img{-webkit-user-drag:none;user-select:none}
+.gallery-rail.is-dragging,.gallery-rail.is-dragging .gallery-photo{cursor:grabbing}
