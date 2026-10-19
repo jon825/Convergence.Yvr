@@ -28,13 +28,21 @@ npm run preview
 ## Before deployment
 
 - Original supplied logos and selected photography are now included. `src/data/asset-map.json` records their source archives and filenames. Photos use 480, 960 and 1440px WebP variants; originals remain in the supplied archives.
-- Menu graphics are deliberately excluded to avoid publishing older offerings.
+- The menu viewer uses the previously supplied menu graphics for review. Confirm that all menu pages and prices are current before sharing publicly. Source filenames are recorded in `src/data/menu-asset-map.json`.
 - Confirm convergence.yvr@gmail.com and @convergence.yvr against the original branding. Links use the details supplied in the brief.
 - Add the confirmed production URL and social preview image to Open Graph metadata. Confirm the service area before including location claims.
 - Browser checks passed at 375, 768, 1024 and 1440px: images loaded, no horizontal overflow, mobile navigation closes on selection and Escape. Desktop and mobile screenshots were visually reviewed.
 
-No backend, booking system, fixed pricing or current menu is included.
+No booking or payment system is included. The enquiry form currently prepares a draft in the visitor’s email app; it does not deliver emails automatically.
 
 ## Gallery
 
-Nine distinct photos scroll continuously in a loop, rotating offscreen cards to the end without cloned slides or visible captions. Hover or keyboard focus pauses movement; click-and-drag loops the strip continuously in either direction without opening a photo. The scrollbar and gallery controls are hidden. Touch uses native swiping. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and pairing sections.
+Six distinct studio photos scroll continuously in a loop, rotating offscreen cards to the end without cloned slides or visible captions. Hover or keyboard focus pauses movement; click-and-drag loops the strip continuously in either direction without opening a photo. The scrollbar and gallery controls are hidden. Touch uses native swiping. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and contact sections.
+
+## Enquiry delivery
+
+By default, Create Email Enquiry opens a mailto draft containing the entered details. The visitor must send it from their email app. No messages are stored or sent by this site.
+
+For direct submission, configure a form service to deliver to the business inbox, then set `VITE_CONTACT_FORM_ENDPOINT` to its public POST URL in `.env.local` or Cloudflare Pages build variables and rebuild. The service must support FormData, JSON responses, and browser CORS. Vite variables are public: never use a secret API key here. Configure spam protection at the chosen service. Success and error states are implemented; live delivery requires a configured endpoint and a real inbox test.
+
+The revised October 2026 layout includes a full-photo split hero, supplied founder biographies, sticky desktop/mobile navigation, a return-to-top link and an eight-page menu dialog with keyboard and touch navigation.

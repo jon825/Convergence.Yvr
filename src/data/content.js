@@ -1,4 +1,4 @@
-export const navigation = [['story', 'Our Story'], ['experience', 'The Experience'], ['pairing', 'The Art of Pairing'], ['gallery', 'Gallery'], ['contact', 'Contact']];
+export const navigation = [['story', 'Our Story'], ['experience', 'The Experience'], ['menu', 'Menu'], ['gallery', 'Gallery'], ['contact', 'Contact']];
 export const steps = [
   ['Connect', 'Tell us about your occasion, chosen venue, and the people around your table.'],
   ['Curate', 'Together, we shape a multi-course experience around your preferences, with drink pairings if you choose.'],
