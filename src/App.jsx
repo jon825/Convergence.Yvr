@@ -5,7 +5,7 @@ import Photo from './components/Photo';
 import Menu from './components/Menu';
 import ContactForm from './components/ContactForm';
 import { biographies } from './data/story';
-import { steps, navigation, contact } from './data/content';
+import { steps, contact } from './data/content';
 const Eyebrow = ({ children }) => <p className="eyebrow">{children}</p>;
 
 export default function App() {
@@ -48,9 +48,8 @@ export default function App() {
     </main>
     <footer>
       <a className="wordmark" href="#home"><img src="/images/convergence-logo.png" width="450" height="142" alt="Convergence"/></a>
-      <nav aria-label="Footer navigation">{navigation.map(([id,label]) => <a href={`#${id}`} key={id}>{label}</a>)}</nav>
       <a className="instagram-link" href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Convergence on Instagram (opens in a new tab)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
-      <p>© {new Date().getFullYear()} Convergence Hospitality Inc.</p>
+      <p>© 2026 Convergence Hospitality Inc.</p>
     </footer>
     <a className="back-to-top" href="#home" aria-label="Return to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M12 20V4m-7 7 7-7 7 7"/></svg></a>
   </>;

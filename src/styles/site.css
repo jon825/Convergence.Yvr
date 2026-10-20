@@ -147,3 +147,18 @@ footer{gap:20px;flex-wrap:wrap}
 .photo-caption-area p{margin:0;text-align:center;font-size:12px;line-height:1.6;max-width:calc(78dvh * .6667)}
 @media(max-width:800px){.story>.story-photo{height:clamp(280px,55svh,480px);aspect-ratio:auto}.story-body{padding:48px 7%}.hero-media img{object-position:50% 70%}}
 @media(max-width:480px){.modal-close{top:8px;right:8px}.modal-previous{left:8px}.modal-next{right:8px}.menu-viewer-title{font-size:10px;letter-spacing:1px}.photo-caption-area{padding:14px 12px}}
+
+/* A more compact enquiry section, with the same photo sizing as Our Story. */
+.contact.section{align-items:center}
+.contact-photo{height:min(680px,calc(100svh - var(--header-height) - 48px));min-height:0;align-self:center}
+.contact-body{padding-block:40px}
+.contact-body>.eyebrow{margin-bottom:20px}
+.contact .lead{margin-block:20px}
+.contact .enquiry-form{gap:16px 18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+footer{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px}
+footer>.wordmark{justify-self:start}
+footer>.instagram-link{justify-self:center}
+footer>p{width:auto;justify-self:end;text-align:right}
+@media(max-width:800px){.contact-photo{height:clamp(260px,42svh,360px)}.contact-body{padding:36px 7%}}
+@media(max-width:600px){footer{grid-template-columns:1fr;justify-items:center;padding-block:28px;gap:16px}footer>.wordmark,footer>.instagram-link,footer>p{justify-self:center}footer>p{text-align:center}}
+@media(max-width:480px){.contact .enquiry-form{grid-template-columns:1fr}}
