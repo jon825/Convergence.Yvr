@@ -46,3 +46,9 @@ By default, Create Email Enquiry opens a mailto draft containing the entered det
 For direct submission, configure a form service to deliver to the business inbox, then set `VITE_CONTACT_FORM_ENDPOINT` to its public POST URL in `.env.local` or Cloudflare Pages build variables and rebuild. The service must support FormData, JSON responses, and browser CORS. Vite variables are public: never use a secret API key here. Configure spam protection at the chosen service. Success and error states are implemented; live delivery requires a configured endpoint and a real inbox test.
 
 The revised October 2026 layout includes a full-photo split hero, supplied founder biographies, sticky desktop/mobile navigation, a return-to-top link and an eight-page menu dialog with keyboard and touch navigation.
+
+## Themes and mobile navigation
+
+The desktop header and full-screen mobile menu offer Light / Dark controls. Dark is the default; the selected theme is saved as `convergence-theme` in browser storage. The page also works when storage is blocked. `public/theme-init.js` restores the saved choice before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
+
+Mobile navigation uses a native modal dialog with large section links, Instagram, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.

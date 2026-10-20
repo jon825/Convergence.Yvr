@@ -190,5 +190,10 @@
       960,
       1440
     ]
+  },
+  {
+    "archive": "convergencelogos.zip",
+    "original": "Covergence_Dark Font 1.png",
+    "asset": "convergence-logo-light.png"
   }
 ]

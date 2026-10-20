@@ -1,0 +1,46 @@
+:root {
+  color-scheme: dark;
+  --background: #202830;
+  --surface: #182229;
+  --surface-alternate: #253039;
+  --header-background: rgb(32 40 48 / 97%);
+  --input-background: #182229;
+  --control-border: #ffffff45;
+  --hover-background: #a4c9bb15;
+  --on-accent: #202830;
+  --bronze: #b4a08a;
+  color: var(--ivory);
+  background: var(--background);
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+  --background: #f5f1e9;
+  --surface: #eee8de;
+  --surface-alternate: #e8e3d9;
+  --header-background: rgb(245 241 233 / 97%);
+  --input-background: #fffcf7;
+  --control-border: #535d5b70;
+  --hover-background: #375e4e12;
+  --on-accent: #f5f1e9;
+  --sage: #375e4e;
+  --ivory: #202830;
+  --muted: #535b5e;
+  --line: #79634e40;
+  --bronze: #796048;
+}
+.site-header { background: var(--header-background); }
+.photo, .hero-art, .hero-media, .gallery-photo, .menu-section, .menu-viewer-title, .photo-caption-area { background: var(--surface); }
+.gallery { background: var(--surface-alternate); }
+.enquiry-form input, .enquiry-form textarea { color-scheme: inherit; background: var(--input-background); border-color: var(--control-border); }
+.back-to-top { background: var(--background); }
+.outline-button:hover { background: var(--hover-background); }
+.skip-link { background: var(--ivory); color: var(--background); }
+.wordmark .brand-logo-light { display: none; }
+:root[data-theme='light'] .wordmark .brand-logo-dark { display: none; }
+:root[data-theme='light'] .wordmark .brand-logo-light { display: block; }
+/* Image artwork and floating viewer controls keep their original colours. */
+.modal-image-stage .modal-overlay-button:focus-visible { outline-color: #a4c9bb; }
+.theme-toggle { display: inline-flex; flex-shrink: 0; gap: 2px; border: 1px solid var(--line); padding: 3px; }
+.theme-toggle button { border: 0; background: transparent; color: var(--muted); min-height: 36px; min-width: 48px; padding: 6px 10px; font: inherit; font-size: 11px; cursor: pointer; }
+.theme-toggle button[aria-pressed='true'] { background: var(--sage); color: var(--on-accent); }
+.theme-toggle button:hover:not([aria-pressed='true']) { background: var(--hover-background); color: var(--ivory); }

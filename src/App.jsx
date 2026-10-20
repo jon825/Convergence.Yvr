@@ -1,5 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
+import BrandLogo from './components/BrandLogo';
+import useTheme from './hooks/useTheme';
 import Gallery from './components/Gallery';
 import Photo from './components/Photo';
 import Menu from './components/Menu';
@@ -9,9 +11,10 @@ import { steps, contact } from './data/content';
 const Eyebrow = ({ children }) => <p className="eyebrow">{children}</p>;
 
 export default function App() {
+  const [theme, setTheme] = useTheme();
   return <>
     <a className="skip-link" href="#main">Skip to content</a>
-    <Header/>
+    <Header theme={theme} onThemeChange={setTheme}/>
     <main id="main">
       <section className="hero" id="home" aria-labelledby="hero-heading">
         <div className="hero-copy">
@@ -47,7 +50,7 @@ export default function App() {
       </section>
     </main>
     <footer>
-      <a className="wordmark" href="#home"><img src="/images/convergence-logo.png" width="450" height="142" alt="Convergence"/></a>
+      <a className="wordmark" href="#home"><BrandLogo/></a>
       <a className="instagram-link" href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Convergence on Instagram (opens in a new tab)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
       <p>© 2026 Convergence Hospitality Inc.</p>
     </footer>
