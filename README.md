@@ -49,6 +49,8 @@ The revised October 2026 layout includes a full-photo split hero, supplied found
 
 ## Themes and mobile navigation
 
-The desktop header and full-screen mobile menu offer a sliding sun/moon switch for Light / Dark mode. Dark is the default; the selected theme is saved as `convergence-theme` in browser storage. The page also works when storage is blocked. `public/theme-init.js` restores the saved choice before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
+The desktop header and full-screen mobile menu offer a sliding sun/moon switch for Light / Dark mode. Every page load starts in dark mode, including reloads and returns via the browser’s Back/Forward cache. Visitors can switch themes while browsing; the choice is not saved between visits. `public/theme-init.js` applies dark mode before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
 
 Mobile navigation uses a native modal dialog with large section links, Instagram, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
+
+On mobile, Discover the Experience appears below the hero photograph, separating it from the Our Story photograph. Desktop keeps the link beside the hero copy.

@@ -21,9 +21,10 @@ export default function App() {
           <Eyebrow>Canapés | Private dining | Catering</Eyebrow>
           <h1 id="hero-heading">Two crafts.<br/>One <em>experience.</em></h1>
           <p className="intro">We exist to transform small gatherings into unforgettable moments, where food, drink, and service converge seamlessly at the table.</p>
-          <a className="text-link hero-cta" href="#experience">DISCOVER THE EXPERIENCE</a>
+          <a className="text-link hero-cta hero-cta-desktop" href="#experience">DISCOVER THE EXPERIENCE</a>
         </div>
         <div className="hero-art"><Photo image="food-and-drink" alt="A coupe glass paired with a plated dish against a dark textured backdrop" variant="hero-media" priority/></div>
+        <div className="hero-cta-mobile"><a className="text-link hero-cta" href="#experience">DISCOVER THE EXPERIENCE</a></div>
       </section>
       <section id="story" className="section story" aria-labelledby="story-heading">
         <Photo image="team-at-an-event" alt="Two members of the Convergence team speaking beside a table prepared for service" variant="story-photo"/>
