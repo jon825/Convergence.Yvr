@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { galleryPhotos } from '../data/gallery';
+import ModalControls from './ModalControls';
 
 export default function Gallery() {
   const rail = useRef(null);
@@ -142,9 +143,12 @@ export default function Gallery() {
       onClick={event => { if (event.target === event.currentTarget) setSelected(null); }}
       onKeyDown={event => { if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); showAdjacent(event.key === 'ArrowLeft' ? -1 : 1); } }}>
       <div className="lightbox-content">
-        <div className="lightbox-toolbar"><h3 id="photo-title">Selected creations</h3><button type="button" autoFocus onClick={() => setSelected(null)}>Close ×</button></div>
-        {active && <img className="lightbox-image" src={`/images/${active.image}-1440.webp`} alt={active.alt}/>}
-        <div className="lightbox-footer"><button type="button" onClick={() => showAdjacent(-1)} aria-label="Previous photograph">← Previous</button><p id="photo-caption">{active?.alt}<span>{selected === null ? '' : `${selected + 1} / ${galleryPhotos.length}`}</span></p><button type="button" onClick={() => showAdjacent(1)} aria-label="Next photograph">Next →</button></div>
+        <h3 id="photo-title" className="sr-only">Gallery photograph</h3>
+        <div className="modal-image-stage gallery-image-stage">
+          <ModalControls onClose={() => setSelected(null)} onPrevious={() => showAdjacent(-1)} onNext={() => showAdjacent(1)} previousLabel="Previous photograph" nextLabel="Next photograph"/>
+          {active && <img className="lightbox-image" src={`/images/${active.image}-1440.webp`} alt={active.alt}/>}
+        </div>
+        <div className="photo-caption-area"><p id="photo-caption">{active?.alt}</p></div>
       </div>
     </dialog>
   </>;
