@@ -49,6 +49,6 @@ The revised October 2026 layout includes a full-photo split hero, supplied found
 
 ## Themes and mobile navigation
 
-The desktop header and full-screen mobile menu offer Light / Dark controls. Dark is the default; the selected theme is saved as `convergence-theme` in browser storage. The page also works when storage is blocked. `public/theme-init.js` restores the saved choice before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
+The desktop header and full-screen mobile menu offer a sliding sun/moon switch for Light / Dark mode. Dark is the default; the selected theme is saved as `convergence-theme` in browser storage. The page also works when storage is blocked. `public/theme-init.js` restores the saved choice before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
 
 Mobile navigation uses a native modal dialog with large section links, Instagram, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.

@@ -40,7 +40,13 @@
 :root[data-theme='light'] .wordmark .brand-logo-light { display: block; }
 /* Image artwork and floating viewer controls keep their original colours. */
 .modal-image-stage .modal-overlay-button:focus-visible { outline-color: #a4c9bb; }
-.theme-toggle { display: inline-flex; flex-shrink: 0; gap: 2px; border: 1px solid var(--line); padding: 3px; }
-.theme-toggle button { border: 0; background: transparent; color: var(--muted); min-height: 36px; min-width: 48px; padding: 6px 10px; font: inherit; font-size: 11px; cursor: pointer; }
-.theme-toggle button[aria-pressed='true'] { background: var(--sage); color: var(--on-accent); }
-.theme-toggle button:hover:not([aria-pressed='true']) { background: var(--hover-background); color: var(--ivory); }
+/* One accessible sliding switch, with sun and moon states. */
+.theme-switch { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 76px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.theme-switch-track { display: block; position: relative; width: 76px; height: 36px; border: 1px solid var(--control-border); border-radius: 36px; background: var(--surface); }
+.theme-switch-sun, .theme-switch-moon { display: flex; align-items: center; justify-content: center; position: absolute; top: 3px; width: 28px; height: 28px; }
+.theme-switch-sun { left: 3px; }
+.theme-switch-moon { right: 3px; }
+.theme-switch-thumb { display: flex; align-items: center; justify-content: center; position: absolute; left: 3px; top: 3px; width: 28px; height: 28px; border-radius: 50%; background: var(--sage); color: var(--on-accent); transition: transform 180ms ease; }
+.theme-switch[aria-checked='true'] .theme-switch-thumb { transform: translateX(40px); }
+.theme-switch:hover .theme-switch-track { border-color: var(--sage); }
+@media (prefers-reduced-motion: reduce) { .theme-switch-thumb { transition: none; } }

@@ -11,7 +11,6 @@
 .mobile-menu-links a:hover { color: var(--sage); }
 .mobile-menu-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
 .mobile-menu-bottom>a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; letter-spacing: .04em; gap: 12px; }
-.mobile-menu-bottom .theme-toggle button { min-height: 44px; }
-@media (min-width: 801px) and (max-width: 1100px) { .desktop-header-actions { gap: 16px; } .navigation { gap: 14px; } .theme-toggle button { padding-inline: 7px; min-width: 44px; } }
+@media (min-width: 801px) and (max-width: 1100px) { .desktop-header-actions { gap: 16px; } .navigation { gap: 14px; } }
 @media (max-width: 800px) { .desktop-header-actions { display: none; } }
 @media (max-height: 500px) { .mobile-menu-links { gap: 0; padding: 12px 0; } .mobile-menu-links a { font-size: 30px; } }

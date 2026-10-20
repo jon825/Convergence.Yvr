@@ -162,3 +162,10 @@ footer>p{width:auto;justify-self:end;text-align:right}
 @media(max-width:800px){.contact-photo{height:clamp(260px,42svh,360px)}.contact-body{padding:36px 7%}}
 @media(max-width:600px){footer{grid-template-columns:1fr;justify-items:center;padding-block:28px;gap:16px}footer>.wordmark,footer>.instagram-link,footer>p{justify-self:center}footer>p{text-align:center}}
 @media(max-width:480px){.contact .enquiry-form{grid-template-columns:1fr}}
+
+/* Let the text define desktop section height; photographs fill the whole column. */
+@media(min-width:801px){
+  .story.section,.contact.section{align-items:stretch}
+  .story>.story-photo,.contact-photo{height:auto;min-height:0;align-self:stretch}
+  .story>.story-photo img,.contact-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+}
