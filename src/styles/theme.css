@@ -36,6 +36,17 @@
 .enquiry-form input, .enquiry-form select, .enquiry-form textarea { color-scheme: inherit; background: var(--input-background); border-color: var(--control-border); }
 .back-to-top { background: var(--background); }
 .outline-button:hover { background: var(--hover-background); }
+:root[data-theme='light'] .hero-cta {
+  min-height: max(44px, 2.875rem);
+  padding: .875rem 1.5rem;
+  border: 1px solid var(--ivory);
+  background: var(--input-background);
+  color: var(--ivory);
+}
+:root[data-theme='light'] .hero-cta:is(:hover, :focus-visible, :active) {
+  background: var(--ivory);
+  color: var(--on-accent);
+}
 .skip-link { background: var(--ivory); color: var(--background); }
 .wordmark .brand-logo-light { display: none; }
 :root[data-theme='light'] .wordmark .brand-logo-dark { display: none; }
