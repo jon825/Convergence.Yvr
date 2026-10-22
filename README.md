@@ -33,7 +33,7 @@ npm run preview
 - Add the confirmed production URL and social preview image to Open Graph metadata. Confirm the service area before including location claims.
 - Browser checks passed at 375, 768, 1024 and 1440px: images loaded, no horizontal overflow, mobile navigation closes on selection and Escape. Desktop and mobile screenshots were visually reviewed.
 
-No booking or payment system is included. The enquiry form currently prepares a draft in the visitor’s email app; it does not deliver emails automatically.
+No booking or payment system is included. The enquiry form is currently a frontend-only preview with required-field validation and delivery feedback; live email sending is not connected. The direct email link remains available.
 
 ## Gallery
 
@@ -41,9 +41,11 @@ Six distinct studio photos scroll continuously in a loop, rotating offscreen car
 
 ## Enquiry delivery
 
-By default, Create Email Enquiry opens a mailto draft containing the entered details. The visitor must send it from their email app. No messages are stored or sent by this site.
+All eight visible fields are required, including phone and Type of Service. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing values, whitespace-only text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
 
-For direct submission, configure a form service to deliver to the business inbox, then set `VITE_CONTACT_FORM_ENDPOINT` to its public POST URL in `.env.local` or Cloudflare Pages build variables and rebuild. The service must support FormData, JSON responses, and browser CORS. Vite variables are public: never use a secret API key here. Configure spam protection at the chosen service. Success and error states are implemented; live delivery requires a configured endpoint and a real inbox test.
+The UI includes sending, success and error feedback. During delivery, fields and the submit button are disabled to prevent duplicate submissions. Errors preserve the entered details; success resets the form only after an endpoint accepts the request with a successful JSON response. The frontend-only preview has no configured endpoint, so a valid form displays an unavailable message instead of claiming an email was sent. No messages are sent during preview tests.
+
+For optional future delivery, set `VITE_CONTACT_FORM_ENDPOINT` to a verified form service’s public POST endpoint in `.env.local` or Cloudflare Pages build variables, then rebuild. It must support FormData, JSON responses and browser CORS. Vite variables are public: never use a secret API key here. Verify the receiving inbox and actual delivery when connecting a service.
 
 The revised October 2026 layout includes a full-photo split hero, supplied founder biographies, sticky desktop/mobile navigation, a return-to-top link and an eight-page menu dialog with keyboard and touch navigation.
 
@@ -51,7 +53,7 @@ The revised October 2026 layout includes a full-photo split hero, supplied found
 
 The desktop header and full-screen mobile menu offer a sliding sun/moon switch for Light / Dark mode. Every page load starts in dark mode, including reloads and returns via the browser’s Back/Forward cache. Visitors can switch themes while browsing; the choice is not saved between visits. `public/theme-init.js` applies dark mode before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
 
-Mobile navigation uses a native modal dialog with large section links, Instagram, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
+Mobile navigation uses a native modal dialog with section links reduced by one-third from the original menu size, a linked Instagram icon and handle, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
 
 On mobile, Discover the Experience appears below the hero photograph, separating it from the Our Story photograph. Desktop keeps the link beside the hero copy.
 

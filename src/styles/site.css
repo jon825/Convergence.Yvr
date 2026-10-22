@@ -176,3 +176,16 @@ footer>p{width:auto;justify-self:end;text-align:right}
   .hero-cta-desktop{display:none}
   .hero-cta-mobile{display:flex;align-items:center;justify-content:center;padding:1.125rem 7%;background:var(--background)}
 }
+
+/* Validation and delivery feedback for the enquiry form. */
+.form-field{display:flex;flex-direction:column;gap:.5625rem;min-width:0}
+.enquiry-form select{width:100%;min-width:0;min-height:2.75rem;border:1px solid var(--control-border);border-radius:0;padding:.75rem;background:var(--input-background);color:var(--ivory);font:inherit;font-size:1rem;letter-spacing:0;color-scheme:inherit}
+.enquiry-form [aria-invalid='true']{border:1px solid var(--error)}
+.enquiry-form select:focus-visible{outline:2px solid var(--sage);outline-offset:3px}
+.field-error{color:var(--error);font-size:max(11px,.75rem);line-height:1.5}
+.form-required-note{font-size:max(11px,.75rem);margin:0}
+.form-feedback{font-size:max(12px,.8125rem);line-height:1.65;margin-top:1rem}
+.form-feedback:empty{display:none}
+.form-feedback.error,.form-feedback.validation{color:var(--error)}
+.form-feedback.success{padding:1rem;border:1px solid var(--sage);background:var(--hover-background);color:var(--sage)}
+.enquiry-form input:disabled,.enquiry-form select:disabled,.enquiry-form textarea:disabled{opacity:.7;cursor:wait}

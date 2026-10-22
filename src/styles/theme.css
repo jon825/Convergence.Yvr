@@ -9,6 +9,7 @@
   --hover-background: #a4c9bb15;
   --on-accent: #202830;
   --bronze: #b4a08a;
+  --error: #f2a79e;
   color: var(--ivory);
   background: var(--background);
 }
@@ -27,11 +28,12 @@
   --muted: #535b5e;
   --line: #79634e40;
   --bronze: #796048;
+  --error: #a52f35;
 }
 .site-header { background: var(--header-background); }
 .photo, .hero-art, .hero-media, .gallery-photo, .menu-section, .menu-viewer-title, .photo-caption-area { background: var(--surface); }
 .gallery { background: var(--surface-alternate); }
-.enquiry-form input, .enquiry-form textarea { color-scheme: inherit; background: var(--input-background); border-color: var(--control-border); }
+.enquiry-form input, .enquiry-form select, .enquiry-form textarea { color-scheme: inherit; background: var(--input-background); border-color: var(--control-border); }
 .back-to-top { background: var(--background); }
 .outline-button:hover { background: var(--hover-background); }
 .skip-link { background: var(--ivory); color: var(--background); }

@@ -35,7 +35,7 @@
 
 /* Controls keep a usable hit area even when the desktop composition shrinks. */
 .outline-button { min-height: max(44px, 2.875rem); }
-.enquiry-form input, .enquiry-form textarea { min-height: max(44px, 2.75rem); font-size: max(16px, 1rem); }
+.enquiry-form input, .enquiry-form select, .enquiry-form textarea { min-height: max(44px, 2.75rem); font-size: max(16px, 1rem); }
 .instagram-link, .back-to-top, .modal-image-stage .modal-overlay-button { width: max(44px, 2.75rem); height: max(44px, 2.75rem); min-height: 44px; }
 .modal-overlay-button svg { width: max(16px, 1.375rem); height: max(16px, 1.375rem); }
 .instagram-link svg, .menu-toggle svg { width: max(20px, 1.5rem); height: max(20px, 1.5rem); }

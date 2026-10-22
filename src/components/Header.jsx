@@ -50,7 +50,7 @@ export default function Header({ theme, onThemeChange }) {
         </div>
         <nav className="mobile-menu-links" aria-label="Mobile navigation">{navigation.map(([id, label], index) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)}><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{label}</a>)}</nav>
         <div className="mobile-menu-bottom">
-          <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Convergence on Instagram (opens in a new tab)">{contact.handle}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+          <a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Convergence on Instagram (opens in a new tab)"><svg className="mobile-instagram-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>{contact.handle}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
           <ThemeToggle theme={theme} onChange={onThemeChange}/>
         </div>
       </div>
