@@ -53,7 +53,7 @@ The revised October 2026 layout includes a full-photo split hero, supplied found
 
 The desktop header and full-screen mobile menu offer a sliding sun/moon switch for Light / Dark mode. Every page load starts in dark mode, including reloads and returns via the browser’s Back/Forward cache. Visitors can switch themes while browsing; the choice is not saved between visits. `public/theme-init.js` applies dark mode before React mounts; `src/styles/theme.css` defines the palettes and chooses the appropriate supplied logo variant. Photos and menu artwork keep their original colours.
 
-Mobile navigation uses a native modal dialog with section links reduced by one-third from the original menu size, a linked Instagram icon and handle, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
+Mobile navigation uses a native modal dialog with section links reduced by one-third from the original menu size, a centred linked Instagram icon, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
 
 On mobile, Discover the Experience appears below the hero photograph, separating it from the Our Story photograph. Desktop keeps the link beside the hero copy.
 
