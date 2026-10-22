@@ -54,3 +54,9 @@ The desktop header and full-screen mobile menu offer a sliding sun/moon switch f
 Mobile navigation uses a native modal dialog with large section links, Instagram, theme controls, keyboard focus containment, Escape/close, focus return and background scroll locking. It closes when a section is selected or the window is resized to desktop. Styling lives in `src/styles/navigation.css`.
 
 On mobile, Discover the Experience appears below the hero photograph, separating it from the Our Story photograph. Desktop keeps the link beside the hero copy.
+
+## Responsive sizing
+
+`src/styles/responsive.css` uses the 1512px desktop layout as its reference (1rem = 16px at that width). Typography, spacing, gallery cards, logos and controls use shared rem-based dimensions so they grow together on larger displays. Desktop sizing has a readable minimum; layouts continue to stack at 800px and below. Controls retain at least 44px targets, and form fields retain at least 16px text. The hero and image viewers also account for screen height, including short ultrawide displays. This uses CSS sizing, not page zoom or a transformed canvas.
+
+Keep new dimensions in rem when they should follow the design scale. Keep breakpoint queries and hairline borders in pixels. Hero, story and contact photos include 1920px and 2400px WebP variants for larger screens; `Photo.jsx` and the gallery supply responsive image sizes.

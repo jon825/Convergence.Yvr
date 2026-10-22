@@ -41,12 +41,14 @@
 /* Image artwork and floating viewer controls keep their original colours. */
 .modal-image-stage .modal-overlay-button:focus-visible { outline-color: #a4c9bb; }
 /* One accessible sliding switch, with sun and moon states. */
-.theme-switch { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 76px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
-.theme-switch-track { display: block; position: relative; width: 76px; height: 36px; border: 1px solid var(--control-border); border-radius: 36px; background: var(--surface); }
-.theme-switch-sun, .theme-switch-moon { display: flex; align-items: center; justify-content: center; position: absolute; top: 3px; width: 28px; height: 28px; }
-.theme-switch-sun { left: 3px; }
-.theme-switch-moon { right: 3px; }
-.theme-switch-thumb { display: flex; align-items: center; justify-content: center; position: absolute; left: 3px; top: 3px; width: 28px; height: 28px; border-radius: 50%; background: var(--sage); color: var(--on-accent); transition: transform 180ms ease; }
-.theme-switch[aria-checked='true'] .theme-switch-thumb { transform: translateX(40px); }
+/* Track, thumb and travel use the same dimensions at every scale. */
+.theme-switch { --switch-width: max(64px, 4.75rem); --switch-height: max(30px, 2.25rem); --switch-inset: max(3px, .1875rem); --switch-thumb: calc(var(--switch-height) - 2 * var(--switch-inset) - 2px); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: var(--switch-width); height: max(44px, 2.75rem); padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.theme-switch-track { display: block; position: relative; width: var(--switch-width); height: var(--switch-height); border: 1px solid var(--control-border); border-radius: var(--switch-height); background: var(--surface); }
+.theme-switch-sun, .theme-switch-moon { display: flex; align-items: center; justify-content: center; position: absolute; top: var(--switch-inset); width: var(--switch-thumb); height: var(--switch-thumb); }
+.theme-switch-sun { left: var(--switch-inset); }
+.theme-switch-moon { right: var(--switch-inset); }
+.theme-switch-thumb { display: flex; align-items: center; justify-content: center; position: absolute; left: var(--switch-inset); top: var(--switch-inset); width: var(--switch-thumb); height: var(--switch-thumb); border-radius: 50%; background: var(--sage); color: var(--on-accent); transition: transform 180ms ease; }
+.theme-switch svg { width: max(12px, 1rem); height: max(12px, 1rem); }
+.theme-switch[aria-checked='true'] .theme-switch-thumb { transform: translateX(calc(var(--switch-width) - var(--switch-height))); }
 .theme-switch:hover .theme-switch-track { border-color: var(--sage); }
 @media (prefers-reduced-motion: reduce) { .theme-switch-thumb { transition: none; } }

@@ -135,7 +135,7 @@ export default function Gallery() {
         const index = (slot + offset) % galleryPhotos.length;
         const photo = galleryPhotos[index];
         return <button className="gallery-photo" type="button" key={photo.image} onClick={() => setSelected(index)} aria-label={`Enlarge photo ${index + 1}: ${photo.alt}`} aria-haspopup="dialog">
-        <img draggable="false" src={`/images/${photo.image}-480.webp`} srcSet={`/images/${photo.image}-480.webp 480w, /images/${photo.image}-960.webp 960w`} sizes="(max-width: 600px) 78vw, 360px" width="480" height="720" alt={photo.alt} loading="lazy" decoding="async"/>
+        <img draggable="false" src={`/images/${photo.image}-480.webp`} srcSet={`/images/${photo.image}-480.webp 480w, /images/${photo.image}-960.webp 960w, /images/${photo.image}-1440.webp 1440w`} sizes="(max-width: 600px) 78vw, (max-width: 800px) 340px, 22.5vw" width="480" height="720" alt={photo.alt} loading="lazy" decoding="async"/>
       </button>; })}
     </div>
     <dialog ref={dialog} className="gallery-dialog" aria-labelledby="photo-title" aria-describedby="photo-caption"

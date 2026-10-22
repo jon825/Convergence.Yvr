@@ -1,0 +1,46 @@
+/*
+ * 1512px reference: 1rem = 16px. Desktop type, spacing, cards and controls
+ * share this unit, so they grow together instead of leaving fixed-size text
+ * inside ever-wider columns. The rem contribution respects text preferences;
+ * minimum sizes keep smaller layouts readable. No page zoom or transforms.
+ */
+:root { font-size: 100%; }
+@media (min-width: 801px) {
+  :root {
+    font-size: max(.875rem, calc(.125rem + .9259259259vw));
+    --header-height: max(68px, 5.75rem);
+  }
+  p { font-size: max(13px, .9375rem); }
+  h3 { font-size: max(20px, 1.6875rem); }
+  .navigation a { font-size: max(10px, .6875rem); }
+  .eyebrow { font-size: max(9px, .625rem); }
+  .story-body p:not(.eyebrow) { font-size: max(13px, .875rem); }
+  .lead, .experience-intro { font-size: max(15px, 1.125rem); }
+  .steps p { font-size: max(12px, .8125rem); }
+  .step-number { font-size: max(10px, .6875rem); }
+  .outline-button { font-size: max(11px, .6875rem); }
+  .contact .lead { font-size: max(13px, .9375rem); }
+  .enquiry-form label { font-size: max(10px, .625rem); }
+  .form-note { font-size: max(11px, .75rem); }
+  footer p { font-size: max(10px, .625rem); }
+  .hero { min-height: min(28.75rem, calc(100svh - var(--header-height))); }
+  /* Keep the opening composition within the screen on wide, short monitors. */
+  .hero .eyebrow { font-size: max(9px, min(.625rem, 1.6svh)); margin-bottom: min(1.875rem, 4svh); }
+  .hero .intro { font-size: max(14px, min(1rem, 2.1svh)); margin-block: min(1.875rem, 4svh); }
+  .hero-cta { font-size: max(10px, min(.625rem, 1.6svh)); padding-block: min(.9375rem, 2svh); }
+  .menu-viewer-title { font-size: max(10px, .6875rem); }
+  .menu-count { font-size: max(10px, .625rem); }
+  .photo-caption-area p { font-size: max(11px, .75rem); }
+}
+
+/* Controls keep a usable hit area even when the desktop composition shrinks. */
+.outline-button { min-height: max(44px, 2.875rem); }
+.enquiry-form input, .enquiry-form textarea { min-height: max(44px, 2.75rem); font-size: max(16px, 1rem); }
+.instagram-link, .back-to-top, .modal-image-stage .modal-overlay-button { width: max(44px, 2.75rem); height: max(44px, 2.75rem); min-height: 44px; }
+.modal-overlay-button svg { width: max(16px, 1.375rem); height: max(16px, 1.375rem); }
+.instagram-link svg, .menu-toggle svg { width: max(20px, 1.5rem); height: max(20px, 1.5rem); }
+.back-to-top svg { width: max(16px, 1.25rem); height: max(16px, 1.25rem); }
+
+/* Image viewers also respect the available screen height on ultrawide displays. */
+.modal-image-stage .modal-overlay-button { width: max(44px, min(2.75rem, 6dvh)); height: max(44px, min(2.75rem, 6dvh)); }
+.modal-overlay-button svg { width: max(16px, min(1.375rem, 3dvh)); height: max(16px, min(1.375rem, 3dvh)); }
