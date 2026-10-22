@@ -41,10 +41,10 @@
 @media(max-width:600px){.gallery-controls{align-items:flex-start;flex-direction:column}.gallery-photo{flex-basis:78vw}.gallery-photo img{height:24.375rem}.gallery-rail{gap:1rem}.lightbox-content{padding:0.875rem}.lightbox-footer{flex-wrap:wrap;gap:0.625rem}.lightbox-footer p{order:-1;width:100%}.lightbox-toolbar h3{font-size:1.25rem}}
 
 /* Keep horizontal scrolling available without visible scrollbar chrome. */
-.gallery-rail{scrollbar-width:none;-ms-overflow-style:none;padding-bottom:0.5rem;cursor:grab}
+.gallery-rail{scrollbar-width:none;-ms-overflow-style:none;padding-bottom:0.5rem;cursor:grab;touch-action:pan-y pinch-zoom}
 .gallery-rail::-webkit-scrollbar{display:none}
-.gallery-photo{cursor:grab;user-select:none}
-.gallery-photo img{-webkit-user-drag:none;user-select:none}
+.gallery-photo{cursor:grab;-webkit-user-select:none;user-select:none}
+.gallery-photo img{-webkit-user-drag:none;-webkit-user-select:none;user-select:none}
 .gallery-rail.is-dragging,.gallery-rail.is-dragging .gallery-photo{cursor:grabbing}
 
 @media(max-width:800px){.menu-toggle{width:3rem;height:3rem;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer}.menu-toggle:hover{color:var(--sage);border-color:var(--sage)}}
@@ -125,6 +125,7 @@ footer{gap:1.25rem;flex-wrap:wrap}
 .story-body{display:flex;flex-direction:column;justify-content:center;padding-block:clamp(3rem,7svh,5.25rem)}
 .experience .steps article{text-align:center}
 .experience h2{font-size:clamp(2.5rem,5vw,4.75rem)}
+@media(max-width:800px){#experience-heading>span{display:block}}
 
 /* Borderless image viewers with controls directly over the photograph. */
 .menu-dialog,.gallery-dialog{width:fit-content;max-width:94vw;max-height:96dvh;padding:0;border:0;background:transparent;color:var(--ivory);overflow:auto}

@@ -33,7 +33,7 @@ export default function App() {
         </div>
       </section>
       <section id="experience" className="section experience" aria-labelledby="experience-heading">
-        <div className="section-heading"><div><Eyebrow>02 / The experience</Eyebrow><h2 id="experience-heading">Your space. Our <em>craft.</em></h2></div></div>
+        <div className="section-heading"><div><Eyebrow>02 / The experience</Eyebrow><h2 id="experience-heading"><span>Your space.</span>{' '}<span>Our <em>craft.</em></span></h2></div></div>
         <p className="experience-intro">A dining experience shaped around you, brought to your chosen location.</p>
         <div className="steps">{steps.map(([title, description], i) => <article key={title}><span className="step-number">0{i + 1}</span><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>

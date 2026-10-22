@@ -39,6 +39,7 @@ export default function Gallery() {
     let last;
     let position = rail.current.scrollLeft;
     const tick = now => {
+      if (drag.current) return;
       const node = rail.current;
       if (last !== undefined && !document.hidden) {
         const max = node.scrollWidth - node.clientWidth;
@@ -72,6 +73,11 @@ export default function Gallery() {
     return () => { document.body.style.overflow = previous; };
   }, [selected]);
 
+  const endDrag = event => {
+    if (drag.current?.id !== event.pointerId) return;
+    drag.current = null;
+    setDragging(false);
+  };
   const move = amount => {
     rail.current.scrollBy({ left: amount * rail.current.clientWidth * 0.75, behavior: reducedMotion ? 'instant' : 'smooth' });
   };
@@ -80,21 +86,28 @@ export default function Gallery() {
 
   return <>
     <div ref={rail} className={`gallery-rail${dragging ? ' is-dragging' : ''}`} role="region" aria-label="Selected creations" tabIndex="0"
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setFocused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}
+      onPointerEnter={event => { if (event.pointerType === 'mouse') setHovered(true); }}
+      onPointerLeave={event => { if (event.pointerType === 'mouse') { setHovered(false); if (!drag.current?.moved) endDrag(event); } }}
+      onFocusCapture={event => setFocused(event.target.matches(':focus-visible'))} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false); }}
       onPointerDown={event => {
-        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+        if (!event.isPrimary || event.button !== 0 || drag.current) return;
         suppressClick.current = false;
-        drag.current = { id: event.pointerId, x: event.clientX, scroll: rail.current.scrollLeft, moved: false };
+        drag.current = { id: event.pointerId, x: event.clientX, y: event.clientY, scroll: rail.current.scrollLeft, moved: false };
+        setFocused(false);
+        setDragging(true);
       }}
       onPointerMove={event => {
         const gesture = drag.current;
         if (!gesture || gesture.id !== event.pointerId) return;
         const distance = event.clientX - gesture.x;
+        // Let the browser handle vertical page scrolling and pinch zoom.
+        if (!gesture.moved && event.pointerType !== 'mouse' && Math.abs(event.clientY - gesture.y) > Math.max(6, Math.abs(distance))) {
+          endDrag(event);
+          return;
+        }
         if (!gesture.moved && Math.abs(distance) > 6) {
           gesture.moved = true;
           suppressClick.current = true;
-          setDragging(true);
           rail.current.setPointerCapture(event.pointerId);
         }
         if (gesture.moved) {
@@ -120,9 +133,12 @@ export default function Gallery() {
           node.scrollLeft = position;
         }
       }}
-      onPointerUp={() => { drag.current = null; setDragging(false); }}
-      onPointerCancel={() => { drag.current = null; setDragging(false); suppressClick.current = false; }}
-      onLostPointerCapture={() => { drag.current = null; setDragging(false); }}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+      onLostPointerCapture={event => {
+        // A touch transfers implicit capture from the thumbnail to the rail.
+        if (event.target === event.currentTarget) endDrag(event);
+      }}
       onClickCapture={event => {
         if (suppressClick.current && event.detail > 0) {
           event.preventDefault();
@@ -130,7 +146,7 @@ export default function Gallery() {
           suppressClick.current = false;
         }
       }}
-      onKeyDown={event => { if (event.target === event.currentTarget && ['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); } }}>
+      onKeyDown={event => { setFocused(true); if (event.target === event.currentTarget && ['ArrowLeft', 'ArrowRight'].includes(event.key)) { event.preventDefault(); move(event.key === 'ArrowLeft' ? -1 : 1); } }}>
       {galleryPhotos.map((_, slot) => {
         const index = (slot + offset) % galleryPhotos.length;
         const photo = galleryPhotos[index];

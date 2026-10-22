@@ -37,7 +37,7 @@ No booking or payment system is included. The enquiry form is currently a fronte
 
 ## Gallery
 
-Six distinct studio photos scroll continuously in a loop, rotating offscreen cards to the end without cloned slides or visible captions. Hover or keyboard focus pauses movement; click-and-drag loops the strip continuously in either direction without opening a photo. The scrollbar and gallery controls are hidden. Touch uses native swiping. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and contact sections.
+Six distinct studio photos scroll continuously in a loop, rotating offscreen cards to the end without cloned slides or visible captions. Mouse hover or keyboard focus pauses movement; mouse and touch dragging loop the strip continuously in either direction without opening a photo. Holding a finger on the gallery pauses automatic movement until release; vertical page scrolling and pinch zoom remain available. The scrollbar and gallery controls are hidden. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and contact sections.
 
 ## Enquiry delivery
 
