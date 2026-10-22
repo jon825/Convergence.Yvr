@@ -117,7 +117,7 @@ export default function ContactForm() {
       {errorMessage('service')}
     </div>
     <div className="form-field form-wide">
-      <label htmlFor="enquiry-message">Tell us about your event</label>
+      <label htmlFor="enquiry-message">Tell us about your event!</label>
       <textarea {...errorAttributes('message')} name="message" rows="4" maxLength="5000" required disabled={sending}/>
       {errorMessage('message')}
     </div>

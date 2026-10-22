@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ModalControls from './ModalControls';
 const pages = [
-  ['food-introduction', 'Food menu introduction'], ['appetizers', 'Appetizers'],
+  ['food-introduction', 'Food menu'], ['appetizers', 'Appetizers'],
   ['pasta', 'Pasta'], ['entrees', 'Entrées'], ['desserts', 'Desserts'],
-  ['drinks-introduction', 'Drink menu introduction'], ['cocktails', 'Cocktails'], ['classics', 'Classic cocktails'],
+  ['drinks-introduction', 'Drink menu'], ['cocktails', 'Cocktails'], ['classics', 'Classic cocktails'],
 ];
 export default function Menu() {
   const dialog = useRef(null);
