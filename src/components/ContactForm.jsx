@@ -81,7 +81,7 @@ export default function ContactForm() {
     try {
       const response = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' }, signal: controller.signal });
       const result = await response.json().catch(() => null);
-      if (!response.ok || !result || result.ok === false || result.errors?.length) throw new Error('Submission was not accepted');
+      if (!response.ok || result?.ok !== true || result.errors?.length) throw new Error('Submission was not accepted');
       form.reset();
       setErrors({});
       setAttempted(false);

@@ -45,9 +45,17 @@ Above 800px, `src/hooks/useGalleryViewport.js` measures the visible viewport, st
 
 All eight visible fields are required, including phone and Type of Service. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing values, whitespace-only text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
 
-The UI includes sending, success and error feedback. During delivery, fields and the submit button are disabled to prevent duplicate submissions. Errors preserve the entered details; success resets the form only after an endpoint accepts the request with a successful JSON response. The frontend-only preview has no configured endpoint, so a valid form displays an unavailable message instead of claiming an email was sent. No messages are sent during preview tests.
+The UI includes sending, success and error feedback. During delivery, fields and the submit button are disabled to prevent duplicate submissions. Errors preserve the entered details; success resets the form only after the delivery service explicitly accepts the request with a successful HTTP status and JSON `{"ok": true}` response. An empty, unrecognised or error response never shows success. Without a configured endpoint, a valid form displays an unavailable message instead of claiming an email was sent. Local browser checks intercept delivery requests; they do not send real email.
 
-For optional future delivery, set `VITE_CONTACT_FORM_ENDPOINT` to a verified form service’s public POST endpoint in `.env.local` or Cloudflare Pages build variables, then rebuild. It must support FormData, JSON responses and browser CORS. Vite variables are public: never use a secret API key here. Verify the receiving inbox and actual delivery when connecting a service.
+To activate delivery with Formspree:
+
+1. Create a form at https://formspree.io and verify the business's receiving inbox. The address displayed on this site is `convergence.yvr@gmail.com`; confirm the destination before activation.
+2. Copy the form's public endpoint, such as `https://formspree.io/f/your-form-id`.
+3. In the Cloudflare Pages project's production environment variables, set `VITE_CONTACT_FORM_ENDPOINT` to that endpoint. If preview deployments should also send enquiries, configure their environment separately.
+4. Trigger a new production build/deployment. Vite reads this setting at build time, so updating a variable alone does not change an existing deployment.
+5. Submit a clearly labelled test enquiry on the deployed site and confirm it arrives in the designated inbox (including checking spam). The on-page confirmation proves the service accepted the enquiry; inbox arrival must be verified separately.
+
+For local delivery checks, copy `.env.example` to `.env.local`, set the same public endpoint and restart `npm run dev`. A completed local form will then send a real enquiry. No SMTP password or private API key is needed or stored in this frontend. Vite variables are public: never put secrets in them. The form submits all eight fields and sets `New Convergence event enquiry` as its subject; the submitter's `email` field is available as the reply address in Formspree.
 
 The revised October 2026 layout includes a full-photo split hero, supplied founder biographies, sticky desktop/mobile navigation, a return-to-top link and an eight-page menu dialog with keyboard and touch navigation.
 
