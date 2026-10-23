@@ -41,6 +41,10 @@
 .instagram-link svg, .menu-toggle svg { width: max(20px, 1.5rem); height: max(20px, 1.5rem); }
 .back-to-top svg { width: max(16px, 1.25rem); height: max(16px, 1.25rem); }
 
+/* Reduce only the space above the gallery heading. */
+.gallery.section { padding-top: 4rem; }
+@media (max-width: 800px) { .gallery.section { padding-top: 2.5rem; } }
+
 /* Image viewers also respect the available screen height on ultrawide displays. */
 .modal-image-stage .modal-overlay-button { width: max(44px, min(2.75rem, 6dvh)); height: max(44px, min(2.75rem, 6dvh)); }
 .modal-overlay-button svg { width: max(16px, min(1.375rem, 3dvh)); height: max(16px, min(1.375rem, 3dvh)); }
