@@ -63,8 +63,9 @@
 .story>.story-photo{grid-column:1;grid-row:1;max-width:none;height:100%;min-height:53.125rem}
 .story-photo img{object-position:50% 35%}
 .story-body{grid-column:2;grid-row:1;padding:5rem clamp(1.75rem,4vw,4.5rem)}
-.story-body h2{margin-bottom:2.25rem}
-.story-body p:not(.eyebrow){font-size:0.875rem;line-height:1.9;margin-bottom:1.625rem}
+.story-body h2{margin-bottom:1.25rem}
+.story-body p:not(.eyebrow):not(.story-subheading){font-size:0.875rem;line-height:1.9;margin-bottom:1.625rem}
+.story-subheading{font-size:max(15px,1.125rem);line-height:1.6;color:var(--ivory);margin-bottom:1.625rem}
 .experience-intro{text-align:center;margin:0 auto 2.5rem;max-width:none;font-size:1.125rem}
 .experience .section-heading{margin-bottom:2.8125rem}
 .menu-section{text-align:center;background:#182229;border-block:1px solid var(--line)}

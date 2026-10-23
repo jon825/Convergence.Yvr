@@ -14,7 +14,7 @@
   h3 { font-size: max(20px, 1.6875rem); }
   .navigation a { font-size: max(10px, .6875rem); }
   .eyebrow { font-size: max(9px, .625rem); }
-  .story-body p:not(.eyebrow) { font-size: max(13px, .875rem); }
+  .story-body p:not(.eyebrow):not(.story-subheading) { font-size: max(13px, .875rem); }
   .lead, .experience-intro { font-size: max(15px, 1.125rem); }
   .steps p { font-size: max(12px, .8125rem); }
   .step-number { font-size: max(10px, .6875rem); }

@@ -29,6 +29,7 @@ export default function App() {
       <section id="story" className="section story" aria-labelledby="story-heading">
         <Photo image="team-at-an-event" alt="Two members of the Convergence team speaking beside a table prepared for service" variant="story-photo"/>
         <div className="story-body"><Eyebrow>01 / Our story</Eyebrow><h2 id="story-heading">Shared <em>vision.</em></h2>
+          <p className="story-subheading">A shared passion for food, drink, and bringing people together.</p>
           {biographies.map((text, index) => <p key={index}>{text}</p>)}
         </div>
       </section>
