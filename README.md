@@ -39,6 +39,8 @@ No booking or payment system is included. The enquiry form is currently a fronte
 
 Six distinct studio photos scroll continuously in a loop, rotating offscreen cards to the end without cloned slides or visible captions. Mouse hover or keyboard focus pauses movement; mouse and touch dragging loop the strip continuously in either direction without opening a photo. Holding a finger on the gallery pauses automatic movement until release; vertical page scrolling and pinch zoom remain available. The scrollbar and gallery controls are hidden. Reduced-motion preferences disable automatic scrolling. Photos open in a native modal with previous/next controls, arrow-key navigation, Escape to close, and focus restored to the selected thumbnail. Edit `src/data/gallery.js` to curate the collection; avoid photos already used in the hero, story and contact sections.
 
+Above 800px, the gallery fits its heading and photo cards into the available screen height below the sticky header. Cards scale in both dimensions using their original 17:22 frame ratio. Wide, short windows use a compact centred arrangement; the rail leaves a full card offscreen for continuous rotation. Mobile retains its existing spacing and sizing. The desktop rules live in `src/styles/responsive.css`.
+
 ## Enquiry delivery
 
 All eight visible fields are required, including phone and Type of Service. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing values, whitespace-only text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
