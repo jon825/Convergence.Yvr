@@ -41,6 +41,19 @@
 .instagram-link svg, .menu-toggle svg { width: max(20px, 1.5rem); height: max(20px, 1.5rem); }
 .back-to-top svg { width: max(16px, 1.25rem); height: max(16px, 1.25rem); }
 
+/* Keep the gallery's photo frames visible below its heading and sticky header. */
+.gallery.section {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100svh - var(--header-height));
+  padding-block: clamp(1rem, 3svh, 2rem);
+}
+.gallery .section-heading { flex-shrink: 0; margin-bottom: clamp(.75rem, 2svh, 1.5rem); }
+.gallery .eyebrow { margin-bottom: .75rem; }
+.gallery .gallery-rail { flex-shrink: 1; min-height: 0; }
+.gallery .gallery-photo img { height: 100%; max-height: 27.5rem; }
+@media (max-width: 600px) { .gallery .gallery-photo img { max-height: 24.375rem; } }
+
 /* Image viewers also respect the available screen height on ultrawide displays. */
 .modal-image-stage .modal-overlay-button { width: max(44px, min(2.75rem, 6dvh)); height: max(44px, min(2.75rem, 6dvh)); }
 .modal-overlay-button svg { width: max(16px, min(1.375rem, 3dvh)); height: max(16px, min(1.375rem, 3dvh)); }
