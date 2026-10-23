@@ -6,7 +6,7 @@ const fields = [
   ['email', 'Email address', 'email', 'email'],
   ['phone', 'Phone number', 'tel', 'tel'],
   ['date', 'Event date', 'date'],
-  ['address', 'Event address', 'text', 'street-address'],
+  ['occasion', 'Occasion', 'text'],
   ['guests', 'How many guests?', 'number'],
 ];
 const services = ['Canapés', 'Plated Dinner', 'Buffet Style/Family Style'];
@@ -15,7 +15,7 @@ const requiredMessages = {
   email: 'Please enter your email address.',
   phone: 'Please enter your phone number.',
   date: 'Please choose an event date.',
-  address: 'Please enter the event address.',
+  occasion: 'Please tell us the occasion.',
   guests: 'Please enter the number of guests.',
   service: 'Please select a type of service.',
   message: 'Please tell us about your event.',
