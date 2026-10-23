@@ -42,7 +42,11 @@
 .back-to-top svg { width: max(16px, 1.25rem); height: max(16px, 1.25rem); }
 
 /* Fine-tune the gallery spacing on desktop. */
-@media (min-width: 801px) { .gallery.section { padding-top: 60px; padding-bottom: 6.25rem; } }
+@media (min-width: 801px) {
+  .gallery.section { padding-top: 60px; padding-bottom: 6.25rem; }
+  .gallery .section-heading { margin-bottom: 3.25rem; }
+  .gallery .eyebrow { margin-bottom: 1.625rem; }
+}
 @media (min-width: 801px) and (max-width: 1100px) { .gallery.section { padding-bottom: 4.5rem; } }
 
 /* Image viewers also respect the available screen height on ultrawide displays. */
