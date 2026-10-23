@@ -37,6 +37,8 @@
 .back-to-top { background: var(--background); }
 .outline-button:hover { background: var(--hover-background); }
 .hero .hero-cta {
+  align-items: center;
+  line-height: 1;
   min-height: max(44px, 2.875rem);
   padding: .875rem 1.5rem;
   border: 1px solid var(--ivory);
