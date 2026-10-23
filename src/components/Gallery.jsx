@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { galleryPhotos } from '../data/gallery';
 import ModalControls from './ModalControls';
+import useGalleryViewport from '../hooks/useGalleryViewport';
 
 export default function Gallery() {
   const rail = useRef(null);
@@ -15,6 +16,7 @@ export default function Gallery() {
   const [selected, setSelected] = useState(null);
   const [offset, setOffset] = useState(0);
   const pendingScroll = useRef(null);
+  useGalleryViewport(rail);
   // Rotate existing photos after a full card leaves the viewport. No duplicate slides.
   useLayoutEffect(() => {
     if (pendingScroll.current !== null) {
