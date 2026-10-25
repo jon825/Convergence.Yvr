@@ -18,6 +18,14 @@ npm run build
 npm run preview
 ```
 
+## GitHub Pages deployment
+
+`.github/workflows/deploy.yml` installs dependencies with `npm ci` on Node.js 22, runs `npm test`, builds the website and publishes `dist` to GitHub Pages. It runs on pushes to `main` and can also be started from GitHub's Actions tab using **Run workflow**. A failed test or build prevents deployment. Deployments run one at a time.
+
+In the repository's **Settings → Pages**, select **GitHub Actions** as the deployment source. The build uses site-root URLs for the custom domain `convergencehospitality.com`; configure that domain in Pages and connect its Porkbun DNS records before checking the public site. The deployment URL appears in the workflow's `github-pages` environment.
+
+The committed Formspree endpoint in `src/data/enquiry.js` is included automatically; no additional email credentials or GitHub secrets are required for the current enquiry integration.
+
 ## Structure
 
 - `src/App.jsx`: page sections and brand storytelling
