@@ -33,7 +33,7 @@ npm run preview
 - Add the confirmed production URL and social preview image to Open Graph metadata. Confirm the service area before including location claims.
 - Browser checks passed at 375, 768, 1024 and 1440px: images loaded, no horizontal overflow, mobile navigation closes on selection and Escape. Desktop and mobile screenshots were visually reviewed.
 
-No booking or payment system is included. The enquiry form is currently a frontend-only preview with required-field validation and delivery feedback; live email sending is not connected. The direct email link remains available.
+No booking or payment system is included. The enquiry form includes direct Formspree submission, required-field validation and delivery feedback. Its public endpoint is configured in `src/data/enquiry.js`; delivery follows the receiving inbox selected in Formspree. The direct email link remains available.
 
 ## Gallery
 
@@ -45,17 +45,25 @@ Above 800px, `src/hooks/useGalleryViewport.js` measures the visible viewport, st
 
 All eight visible fields are required, including phone and Type of Service. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing values, whitespace-only text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
 
-The UI includes sending, success and error feedback. During delivery, fields and the submit button are disabled to prevent duplicate submissions. Errors preserve the entered details; success resets the form only after the delivery service explicitly accepts the request with a successful HTTP status and JSON `{"ok": true}` response. An empty, unrecognised or error response never shows success. Without a configured endpoint, a valid form displays an unavailable message instead of claiming an email was sent. Local browser checks intercept delivery requests; they do not send real email.
+`src/services/formspree.js` submits all eight enquiry fields directly to a public HTTPS Formspree form endpoint, with the subject `New Convergence event enquiry`. The `email` field supplies the visitor's reply address. The receiving inbox belongs to the Formspree form; the website's displayed business address does not determine the recipient.
+
+The current form is `https://formspree.io/f/xeaaeerr`. Its receiving inbox is managed by the account owner in Formspree; initially this may be the developer's verified inbox while business inbox access is pending.
+
+The UI includes sending, success and error feedback. During delivery, fields and the submit button are disabled to prevent duplicate submissions. Errors and the 20-second delivery timeout preserve the entered details; success resets the form only after Formspree explicitly accepts the request with a successful HTTP status and JSON `{"ok": true}` response. An empty, unrecognised or error response never shows success. Without a valid endpoint, a completed form displays an unavailable message and sends no enquiry details.
 
 To activate delivery with Formspree:
 
-1. Create a form at https://formspree.io and verify the business's receiving inbox. The address displayed on this site is `convergence.yvr@gmail.com`; confirm the destination before activation.
+1. Create a form at https://formspree.io with a verified receiving inbox. The developer's verified inbox can be used initially; select and verify `convergence.yvr@gmail.com` in Formspree when access to the business inbox is available.
 2. Copy the form's public endpoint, such as `https://formspree.io/f/your-form-id`.
-3. In the Cloudflare Pages project's production environment variables, set `VITE_CONTACT_FORM_ENDPOINT` to that endpoint. If preview deployments should also send enquiries, configure their environment separately.
-4. Trigger a new production build/deployment. Vite reads this setting at build time, so updating a variable alone does not change an existing deployment.
+3. Set `formspreeEndpoint` in `src/data/enquiry.js` to that public URL. This setting can be committed so GitHub-connected Cloudflare Pages deployments include the connection automatically.
+4. Build and deploy the update. With the existing GitHub integration, pushing the configured endpoint to `main` triggers Cloudflare Pages to rebuild.
 5. Submit a clearly labelled test enquiry on the deployed site and confirm it arrives in the designated inbox (including checking spam). The on-page confirmation proves the service accepted the enquiry; inbox arrival must be verified separately.
 
-For local delivery checks, copy `.env.example` to `.env.local`, set the same public endpoint and restart `npm run dev`. A completed local form will then send a real enquiry. No SMTP password or private API key is needed or stored in this frontend. Vite variables are public: never put secrets in them. The form submits all eight fields and sets `New Convergence event enquiry` as its subject; the submitter's `email` field is available as the reply address in Formspree.
+Changing the receiving inbox on the same Formspree form does not require a website code change. If a new Formspree form is created instead, update its endpoint in `src/data/enquiry.js` and redeploy.
+
+For deployment-specific configuration, `VITE_CONTACT_FORM_ENDPOINT` overrides the endpoint in `src/data/enquiry.js`. Set it in `.env.local` for local development or in the Cloudflare Pages environment, then restart/rebuild. A blank override falls back to the committed endpoint; an invalid override disables sending. A completed form with a configured endpoint sends a real enquiry. These settings are public URLs, not SMTP passwords or private API keys.
+
+Run `npm test` to verify the delivery service without sending email. Automated browser checks can intercept Formspree requests to exercise required fields, duplicate submission prevention, sending/success/error feedback, retained details and retry behavior without contacting a real inbox.
 
 The revised October 2026 layout includes a full-photo split hero, supplied founder biographies, sticky desktop/mobile navigation, a return-to-top link and an eight-page menu dialog with keyboard and touch navigation.
 

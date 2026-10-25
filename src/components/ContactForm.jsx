@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { contact } from '../data/content';
+import { enquiry } from '../data/enquiry';
+import { formspreeEndpoint, sendEnquiry } from '../services/formspree';
 
 const fields = [
   ['name', 'Full name', 'text', 'name'],
@@ -35,7 +37,7 @@ export default function ContactForm() {
   const [attempted, setAttempted] = useState(false);
   const [status, setStatus] = useState({ kind: 'idle', message: '' });
   const submitting = useRef(false);
-  const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT?.trim();
+  const endpoint = formspreeEndpoint(import.meta.env.VITE_CONTACT_FORM_ENDPOINT?.trim() || enquiry.formspreeEndpoint);
   const sending = status.kind === 'sending';
 
   function updateField(event) {
@@ -72,16 +74,12 @@ export default function ContactForm() {
 
     // Snapshot the validated details before disabling fields during delivery.
     const data = new FormData(form);
-    for (const [name, value] of data) if (typeof value === 'string') data.set(name, value.trim());
-    data.set('_subject', 'New Convergence event enquiry');
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 20000);
     submitting.current = true;
     setStatus({ kind: 'sending', message: 'Sending your enquiry…' });
     try {
-      const response = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' }, signal: controller.signal });
-      const result = await response.json().catch(() => null);
-      if (!response.ok || result?.ok !== true || result.errors?.length) throw new Error('Submission was not accepted');
+      await sendEnquiry(endpoint, data, controller.signal);
       form.reset();
       setErrors({});
       setAttempted(false);
