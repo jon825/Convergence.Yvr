@@ -18,11 +18,27 @@ npm run build
 npm run preview
 ```
 
-## GitHub Pages deployment
+## Preview and production deployments
 
-`.github/workflows/deploy.yml` installs dependencies with `npm ci` on Node.js 22, runs `npm test`, builds the website and publishes `dist` to GitHub Pages. It runs on pushes to `main` and can also be started from GitHub's Actions tab using **Run workflow**. A failed test or build prevents deployment. Deployments run one at a time.
+| Environment | URL | Deployment trigger |
+|---|---|---|
+| Preview | https://convergence-yvr.jonathan-k0825.workers.dev/ | Cloudflare's Git build connection to `main` |
+| Production | https://convergencehospitality.com | Manually run **Deploy production to GitHub Pages** |
 
-In the repository's **Settings → Pages**, select **GitHub Actions** as the deployment source. The build uses site-root URLs for the custom domain `convergencehospitality.com`; configure that domain in Pages and connect its Porkbun DNS records before checking the public site. The deployment URL appears in the workflow's `github-pages` environment.
+Pushes to `main` run `.github/workflows/checks.yml`, which installs dependencies with `npm ci` on Node.js 22, runs `npm test` and builds the website. This workflow never publishes to GitHub Pages. Production remains on the last published version until a manual release.
+
+The Cloudflare preview is confirmed to update automatically from `main`. Keep the Worker's Git integration connected to `jon825/Convergence.Yvr` with automatic builds enabled on `main`. Its build status and deployed commit can be checked in Cloudflare's dashboard. Cloudflare runs its preview builds independently of the GitHub checks.
+
+To release a reviewed update:
+
+1. Push changes to `main` and wait for the GitHub checks and Cloudflare preview build to succeed.
+2. Review the Cloudflare preview. Confirm its deployed commit matches the version of `main` you want to publish. If another push arrives during review, review the updated preview before releasing.
+3. In GitHub, open **Actions → Deploy production to GitHub Pages → Run workflow**. Select **main**, then click **Run workflow**.
+4. Wait for the workflow to succeed and check https://convergencehospitality.com.
+
+`.github/workflows/deploy.yml` runs only when manually requested, and its deployment job accepts only `main`. It installs dependencies, runs the tests, builds the selected `main` revision and publishes `dist`. A failed test or build prevents deployment. Production deployments run one at a time. The manual workflow does not automatically verify or wait for Cloudflare; review the successful preview before starting it.
+
+In the repository's **Settings → Pages**, keep **GitHub Actions** as the deployment source. The build uses site-root URLs for `convergencehospitality.com`; its custom domain and Porkbun DNS records remain configured in their respective dashboards. The production deployment URL appears in the workflow's `github-pages` environment.
 
 The committed Formspree endpoint in `src/data/enquiry.js` is included automatically; no additional email credentials or GitHub secrets are required for the current enquiry integration.
 
@@ -63,13 +79,13 @@ To activate delivery with Formspree:
 
 1. Create a form at https://formspree.io with a verified receiving inbox. The developer's verified inbox can be used initially; select and verify `convergence.yvr@gmail.com` in Formspree when access to the business inbox is available.
 2. Copy the form's public endpoint, such as `https://formspree.io/f/your-form-id`.
-3. Set `formspreeEndpoint` in `src/data/enquiry.js` to that public URL. This setting can be committed so GitHub-connected Cloudflare Pages deployments include the connection automatically.
-4. Build and deploy the update. With the existing GitHub integration, pushing the configured endpoint to `main` triggers Cloudflare Pages to rebuild.
+3. Set `formspreeEndpoint` in `src/data/enquiry.js` to that public URL. Commit the setting so both preview and production builds include the connection.
+4. Push the update to `main`, review the Cloudflare preview, then manually run the production deployment as described above.
 5. Submit a clearly labelled test enquiry on the deployed site and confirm it arrives in the designated inbox (including checking spam). The on-page confirmation proves the service accepted the enquiry; inbox arrival must be verified separately.
 
 Changing the receiving inbox on the same Formspree form does not require a website code change. If a new Formspree form is created instead, update its endpoint in `src/data/enquiry.js` and redeploy.
 
-For deployment-specific configuration, `VITE_CONTACT_FORM_ENDPOINT` overrides the endpoint in `src/data/enquiry.js`. Set it in `.env.local` for local development or in the Cloudflare Pages environment, then restart/rebuild. A blank override falls back to the committed endpoint; an invalid override disables sending. A completed form with a configured endpoint sends a real enquiry. These settings are public URLs, not SMTP passwords or private API keys.
+For deployment-specific configuration, `VITE_CONTACT_FORM_ENDPOINT` overrides the endpoint in `src/data/enquiry.js`. Set it in `.env.local` for local development or in the Cloudflare build environment, then restart/rebuild. A blank override falls back to the committed endpoint; an invalid override disables sending. A completed form with a configured endpoint sends a real enquiry, including from the preview site. These settings are public URLs, not SMTP passwords or private API keys.
 
 Run `npm test` to verify the delivery service without sending email. Automated browser checks can intercept Formspree requests to exercise required fields, duplicate submission prevention, sending/success/error feedback, retained details and retry behavior without contacting a real inbox.
 

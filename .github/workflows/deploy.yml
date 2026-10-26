@@ -1,8 +1,6 @@
-name: Deploy to GitHub Pages
+name: Deploy production to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -17,6 +15,7 @@ concurrency:
 jobs:
   deploy:
     name: Build and deploy
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
