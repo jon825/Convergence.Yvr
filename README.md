@@ -67,7 +67,7 @@ Above 800px, `src/hooks/useGalleryViewport.js` measures the visible viewport, st
 
 ## Enquiry delivery
 
-All eight visible fields are required, including phone and Type of Service. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing values, whitespace-only text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
+Seven of the eight visible fields are required, including phone and Type of Service. The "Tell us about your event!" description is optional; visitors can submit with it blank. The service options are Canapés, Plated Dinner, and Buffet Style/Family Style. Missing required values, whitespace-only required text, invalid email addresses and invalid guest counts block submission, show red borders and inline errors, and focus the first invalid field.
 
 `src/services/formspree.js` submits all eight enquiry fields directly to a public HTTPS Formspree form endpoint, with the subject `New Convergence event enquiry`. The `email` field supplies the visitor's reply address. The receiving inbox belongs to the Formspree form; the website's displayed business address does not determine the recipient.
 

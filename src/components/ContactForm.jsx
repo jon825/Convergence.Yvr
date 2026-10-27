@@ -20,7 +20,6 @@ const requiredMessages = {
   occasion: 'Please tell us the occasion.',
   guests: 'Please enter the number of guests.',
   service: 'Please select a type of service.',
-  message: 'Please tell us about your event.',
 };
 
 function fieldError(field) {
@@ -42,9 +41,9 @@ export default function ContactForm() {
 
   function updateField(event) {
     const field = event.target;
-    if (!requiredMessages[field.name]) return;
+    if (!requiredMessages[field.name] && field.name !== 'message') return;
     if (status.kind !== 'sending') setStatus({ kind: 'idle', message: '' });
-    if (!attempted) return;
+    if (!attempted || !requiredMessages[field.name]) return;
     const message = fieldError(field);
     setErrors(current => {
       const next = { ...current };
@@ -100,7 +99,7 @@ export default function ContactForm() {
   const errorMessage = name => errors[name] && <span className="field-error" id={`enquiry-${name}-error`}>{errors[name]}</span>;
 
   return <form className="enquiry-form" noValidate onSubmit={submit} onChange={updateField} aria-busy={sending}>
-    <p className="form-required-note form-wide">All fields are required.</p>
+    <p className="form-required-note form-wide">All fields are required except your event description.</p>
     {fields.map(([name, label, type, autocomplete]) => <div className="form-field" key={name}>
       <label htmlFor={`enquiry-${name}`}>{label}</label>
       <input {...errorAttributes(name)} name={name} type={type} autoComplete={autocomplete} required disabled={sending} min={type === 'number' ? '1' : undefined} step={type === 'number' ? '1' : undefined} maxLength={type === 'text' ? 200 : undefined}/>
@@ -116,8 +115,7 @@ export default function ContactForm() {
     </div>
     <div className="form-field form-wide">
       <label htmlFor="enquiry-message">Tell us about your event!</label>
-      <textarea {...errorAttributes('message')} name="message" rows="4" maxLength="5000" required disabled={sending}/>
-      {errorMessage('message')}
+      <textarea id="enquiry-message" name="message" rows="4" maxLength="5000" disabled={sending}/>
     </div>
     <div className="form-wide">
       <button className="outline-button" type="submit" disabled={sending}>{sending ? 'SENDING…' : 'SEND ENQUIRY'}</button>

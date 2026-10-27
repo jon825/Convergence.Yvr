@@ -6,7 +6,7 @@ import Gallery from './components/Gallery';
 import Photo from './components/Photo';
 import Menu from './components/Menu';
 import ContactForm from './components/ContactForm';
-import { biographies } from './data/story';
+import { biographies, sharedVision } from './data/story';
 import { steps, contact } from './data/content';
 const Eyebrow = ({ children }) => <p className="eyebrow">{children}</p>;
 
@@ -33,6 +33,7 @@ export default function App() {
             <h3 id={`story-${id}-heading`} className="story-subheading">{subheading}</h3>
             <p>{text}</p>
           </article>)}
+          <p className="story-subheading">{sharedVision}</p>
         </div>
       </section>
       <section id="experience" className="section experience" aria-labelledby="experience-heading">

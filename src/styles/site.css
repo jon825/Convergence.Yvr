@@ -53,9 +53,9 @@
 .hero{padding:0;gap:0;grid-template-columns:1fr 1fr;min-height:0;align-items:stretch;border-bottom:1px solid var(--line)}
 .hero-copy{padding:4.375rem clamp(1.75rem,5vw,5.625rem);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:none}
 .hero h1{font-size:clamp(3.25rem,5.7vw,5.875rem)}
-.hero .eyebrow{font-size:0.625rem;letter-spacing:0.125rem}
+.hero .eyebrow{font-size:0.6875rem;letter-spacing:0.125rem}
 .hero .intro{max-width:26.875rem}
-.hero-cta{justify-content:center;min-width:14.375rem;font-size:0.625rem;letter-spacing:0.09375rem;text-align:center}
+.hero-cta{justify-content:center;min-width:14.375rem;font-size:0.6875rem;letter-spacing:0.09375rem;text-align:center}
 .hero-art{margin:0;display:flex;align-items:center;background:#293038}
 .hero-media{width:100%;height:100%;aspect-ratio:auto}
 .hero-media img{object-fit:contain;object-position:center}
@@ -64,13 +64,14 @@
 .story-photo img{object-position:50% 35%}
 .story-body{grid-column:2;grid-row:1;padding:5rem clamp(1.75rem,4vw,4.5rem)}
 .story-body h2{margin-bottom:1.25rem}
-.story-body p:not(.eyebrow){font-size:0.875rem;line-height:1.9;margin-bottom:1.625rem}
+.story-body p:not(.eyebrow, .story-subheading){font-size:0.875rem;line-height:1.9;margin-bottom:1.625rem}
 .story-subheading{font-family:inherit;font-size:max(15px,1.125rem);line-height:1.6;color:var(--ivory);margin:0 0 .75rem}
 .experience-intro{text-align:center;margin:0 auto 2.5rem;max-width:none;font-size:1.125rem}
 .experience .section-heading{margin-bottom:2.8125rem}
 .menu-section{text-align:center;background:#182229;border-block:1px solid var(--line)}
 .menu-section .lead{margin:1.625rem auto}
 .outline-button{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--sage);background:transparent;color:var(--ivory);min-height:2.875rem;padding:0.8125rem 1.5rem;font:inherit;font-size:0.6875rem;letter-spacing:0.0625rem;cursor:pointer}
+.menu-section>.outline-button{font-size:max(12px,.75rem)}
 .outline-button:hover{background:#a4c9bb15}
 .outline-button:disabled{opacity:.6;cursor:wait}
 .menu-dialog{width:min(56.25rem,96vw);max-height:96dvh;padding:0;border:1px solid var(--line);background:#202830;color:var(--ivory);overflow:auto}
@@ -98,7 +99,7 @@ footer{gap:1.25rem;flex-wrap:wrap}
 .back-to-top{position:fixed;bottom:1.375rem;right:1.375rem;z-index:15;background:#202830;border:1px solid var(--sage);width:2.75rem;height:2.75rem;display:flex;align-items:center;justify-content:center}
 @media(max-width:1000px) and (min-width:801px){.hero-copy{padding:2.8125rem 1.875rem}.hero h1{font-size:3.375rem}.hero .eyebrow{letter-spacing:0.0625rem}.story-body{padding:3.4375rem 1.875rem}.contact-body{padding:3.4375rem 1.75rem}.enquiry-form{grid-template-columns:1fr}}
 @media(max-width:800px){.site-header{min-height:5rem;padding:0.9375rem 6%}.hero{grid-template-columns:1fr}.hero-copy{padding:3.4375rem 7%}.hero h1{font-size:clamp(3.25rem,10vw,4.875rem)}.hero-media{max-height:none;width:100%}.hero-art{max-height:none}.story.section{grid-template-columns:1fr}.story>.story-photo{grid-column:auto;grid-row:auto;min-height:0;height:auto;aspect-ratio:4/3}.story-body{grid-column:auto;grid-row:auto;padding:3.4375rem 7%}.contact.section{grid-template-columns:1fr}.contact-photo{height:26.25rem;min-height:0}.contact-body{padding:3.4375rem 7%}.experience-intro{font-size:1rem}.contact h2{font-size:clamp(2.5rem,8vw,4rem)}.back-to-top{right:0.875rem;bottom:0.875rem}}
-@media(max-width:480px){.enquiry-form{grid-template-columns:1fr}.menu-viewer{padding:0.75rem}.menu-pagination .outline-button{padding:0.75rem;font-size:0.625rem}.hero .eyebrow{font-size:0.5625rem;letter-spacing:0.075rem}.hero-copy{padding-block:2.8125rem}}
+@media(max-width:480px){.enquiry-form{grid-template-columns:1fr}.menu-viewer{padding:0.75rem}.menu-pagination .outline-button{padding:0.75rem;font-size:0.625rem}.hero .eyebrow{font-size:0.625rem;letter-spacing:0.075rem}.hero-copy{padding-block:2.8125rem}}
 
 /* Fit the introductory composition below the persistent header. */
 :root{--header-height:5.75rem}
@@ -117,7 +118,7 @@ footer{gap:1.25rem;flex-wrap:wrap}
   .hero h1{font-size:clamp(2.625rem,8vw,4rem)}
   .hero .eyebrow{margin-bottom:1rem}
   .hero .intro{font-size:0.875rem;line-height:1.7;margin:1.125rem 0}
-  .hero-cta{padding:0.75rem 0;font-size:0.6875rem}
+  .hero-cta{padding:0.75rem 0;font-size:0.75rem}
 }
 
 /* Balanced story composition and centred experience columns. */

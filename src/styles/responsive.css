@@ -14,7 +14,7 @@
   h3 { font-size: max(20px, 1.6875rem); }
   .navigation a { font-size: max(10px, .6875rem); }
   .eyebrow { font-size: max(9px, .625rem); }
-  .story-body p:not(.eyebrow) { font-size: max(13px, .875rem); }
+  .story-body p:not(.eyebrow, .story-subheading) { font-size: max(13px, .875rem); }
   .lead, .experience-intro { font-size: max(15px, 1.125rem); }
   .steps p { font-size: max(12px, .8125rem); }
   .step-number { font-size: max(10px, .6875rem); }
@@ -25,9 +25,9 @@
   footer p { font-size: max(10px, .625rem); }
   .hero { min-height: min(28.75rem, calc(100svh - var(--header-height))); }
   /* Keep the opening composition within the screen on wide, short monitors. */
-  .hero .eyebrow { font-size: max(9px, min(.625rem, 1.6svh)); margin-bottom: min(1.875rem, 4svh); }
+  .hero .eyebrow { font-size: max(10px, min(.6875rem, 1.8svh)); margin-bottom: min(1.875rem, 4svh); }
   .hero .intro { font-size: max(14px, min(1rem, 2.1svh)); margin-block: min(1.875rem, 4svh); }
-  .hero-cta { font-size: max(10px, min(.625rem, 1.6svh)); padding-block: min(.9375rem, 2svh); }
+  .hero-cta { font-size: max(11px, min(.6875rem, 1.8svh)); padding-block: min(.9375rem, 2svh); }
   .menu-viewer-title { font-size: max(10px, .6875rem); }
   .menu-count { font-size: max(10px, .625rem); }
   .photo-caption-area p { font-size: max(11px, .75rem); }
